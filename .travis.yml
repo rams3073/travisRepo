@@ -16,7 +16,8 @@ jdk:
 - oraclejdk8
 
 script: 
-   - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+ #  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+    - ./gradlew clean test --stacktrace
 sudo: required
 
 cache:
