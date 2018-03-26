@@ -15,8 +15,8 @@ android:
 jdk:
 - oraclejdk8
 
-script: if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./gradlew clean :app:assembleRelease --stacktrace; else ./gradlew clean test --stacktrace; fi
-
+script: 
+   - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
 sudo: required
 
 cache:
