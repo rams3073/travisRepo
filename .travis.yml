@@ -95,21 +95,17 @@ before_deploy:
 - cd app/build/outputs/apk/
 
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/example_keystore.jks -storepass $storepass -keypass $keypass app-release-unsigned.apk ExampleKeystoreAlias
-
+# Set up git user name and tag this commit
+- git config --local user.name "ramachandar.s"
+- git config --local user.email "ramachandar.s@hcl.com"
+- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
 # Verification
 
 - jarsigner -verify app-release-unsigned.apk
 
 - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk TravisExample.apk"
-
-
-before_deploy:
-      # Set up git user name and tag this commit
-      - git config --local user.name "ramachandar.s"
-      - git config --local user.email "ramachandar.s@hcl.com"
-      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-    
+  
 deploy:
   provider: releases
   api_key: b1ae23474bce97396c367aa071b993e7d5abc8e8
@@ -117,4 +113,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: rams3073/travisRepo
-    tags: true
+    tags: false
