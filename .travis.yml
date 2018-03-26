@@ -111,7 +111,7 @@ deploy:
 
   on:
 
-    repo: harmittaa/travis-example-android
+    repo: rams3073/travisRepo
 
     tags: true
 
