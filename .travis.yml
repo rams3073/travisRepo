@@ -25,6 +25,7 @@ script: if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./gradlew clean :app:assembl
 branches:
   only: 
     - master
+    - dev
   
 #notifications:
 #  ##email: false
