@@ -23,11 +23,8 @@ jdk:
 script: if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./gradlew clean :app:assembleRelease --stacktrace; else ./gradlew clean test --stacktrace; fi
 
 branches:
-  except:
-  - images
-  - gh-pages
-  - travis-build
-  - i18n
+  only: 
+    - master
   
 notifications:
   email: false
