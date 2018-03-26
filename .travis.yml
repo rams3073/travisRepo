@@ -103,21 +103,18 @@ before_deploy:
 
 - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk TravisExample.apk"
 
+
+before_deploy:
+      # Set up git user name and tag this commit
+      - git config --local user.name "ramachandar.s"
+      - git config --local user.email "ramachandar.s@hcl.com"
+      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+    
 deploy:
-
   provider: releases
-
+  api_key: b1ae23474bce97396c367aa071b993e7d5abc8e8
   file: AndroidExample.apk
   skip_cleanup: true
-
   on:
-
     repo: rams3073/travisRepo
-
     tags: true
-
-    jdk: oraclejdk8
-
-  api_key:
-
-    secure: "ShxzZffSJIrdwKSLbyBl8u9GLjo7kAT0a1FkAeD187qSZV4rUqM/tvNDeH6ySR/YxLvRg/UyfGyidcmh1z98heq5aBCfZj3xHn8rLi8HBfrTsMFs/NqhnJXKVzjbEGHe3hw9XghPV1QqWkZl9DGb5Bgptpz0wuF9m9X3C5ywKBFUdLbIKKgwv/6Qx3ByROECndKvkhwtNdXcO3NVPm68TIuGU5AMhyNFhbyattyDY8TyCDnSOQXoFSto71lYyKY5WafFiS4b92HgIHTZxOV2FBnWIaHTIDKdtHcBj/eNYRVb8CVjjxu2xoBcmgWVtxl/04RDq+mZX/lZuLLyIN0UN0h9Zj0Ks9ywmWRQQYKPm2qMJeCBDpBAqXTU6m0AeY3CdHTwvM4lx5gAO/exBe257Dk+TpvUdVH1auu9df3V7ERgfOkoUC9bRyy1E/kzK7p5dtEoyIJtGq+dqL5iMvaDbmrqFpUxtPShJupaaXHiSjD1gcusd+r7BklpbAWIDoLm7q3iuOzA/L86fB7VGkTOUaVYpJQ2AJRx8GfqcxxDAzQDfW7Ev7qsQmjUMjE1ck1XVlZmXgMmvCgnAve9yph0mPPma6iHsaocoE9SDJi07x6NFVfAEWLQupZufYBCsc8VCFUDrx2g/YsxoAecF+AEPkQ45eG9YRp2r6nayB1S864="
