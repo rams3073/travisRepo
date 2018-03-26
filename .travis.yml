@@ -86,7 +86,7 @@ script:
 
 ##- "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
 
-- echo "Hello this is an android application" > rams3073/travisRepo/output.txt
+- echo "Hello this is an android application" > $HOME/output.txt
 
 before_deploy:
 
